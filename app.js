@@ -50,11 +50,7 @@ app.get("/work", (req, res) => {
 app.get("/clean", (req, res) => {
     items.length = 0;
     workItems.length = 0;
-    res.render("list", {
-        listTitle: "Work List",
-        newListItem: workItems,
-        listType: "/work",
-    });
+    res.redirect("/");
 });
 
 app.post("/", (req, res) => {
