@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); // for body parsing    // USE not set USE!
 app.use(express.static("public")); // to make a public folder with all the files accesssible when deploy on cloud
 
-// LISTENING TO SERVER--------------------------------------------------------------->
+// LISTENING TO SERVER----------------------------------------------------------------->
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server started at port 3000.");
@@ -21,7 +21,7 @@ app.listen(process.env.PORT || 3000, () => {
 let items = [];
 let workItems = [];
 
-// GET AND POST REQUESTS--------------------------------------------------------------->
+// GET AND POST REQUESTS---------------------------------------------------------------->
 
 app.get("/", (req, res) => {
     let today = new Date();
