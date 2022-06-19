@@ -12,7 +12,7 @@ app.use(express.static("public")); // to make a public folder with all the files
 
 // LISTENING TO SERVER--------------------------------------------------------------->
 
-app.listen(process.env.port || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server started at port 3000.");
 });
 
