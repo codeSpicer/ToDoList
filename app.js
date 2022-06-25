@@ -67,14 +67,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/work", (req, res) => {
-  res.render("list", {
-    listTitle: "Work List",
-    newListItem: workItems,
-    listType: "/work",
-  });
-});
-
 app.post("/", (req, res) => {
   if (req.body.newItem == "") {
     return;
@@ -88,10 +80,28 @@ app.post("/", (req, res) => {
   res.redirect("/");
 });
 
-app.post("/work", (req, res) => {
-  if (req.body.newItem == "") {
-    return;
-  }
-  workItems.push(req.body.newItem);
-  res.redirect("/work");
+app.post("/delete", (req, res) => {
+  //   console.log(req.body);
+  Item.findByIdAndRemove(req.body.completed, (err) => {
+    if (err) {
+      console.log("oh no xD");
+    }
+  });
+  res.redirect("/");
 });
+
+// app.get("/work", (req, res) => {
+//   res.render("list", {
+//     listTitle: "Work List",
+//     newListItem: workItems,
+//     listType: "/work",
+//   });
+// });
+
+// app.post("/work", (req, res) => {
+//   if (req.body.newItem == "") {
+//     return;
+//   }
+//   workItems.push(req.body.newItem);
+//   res.redirect("/work");
+// });
