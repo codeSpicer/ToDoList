@@ -98,10 +98,27 @@ app.post("/", (req, res) => {
 
 app.post("/delete", (req, res) => {
   //   console.log(req.body);
-  Item.findByIdAndRemove(req.body.completed, (err) => {
-    if (err) {
-      console.log("oh no xD");
-    }
-  });
-  res.redirect("/");
+  const itemId = req.body.completed;
+  const listName = req.body.listName;
+
+  if (listName === "Today") {
+    Item.findByIdAndRemove(itemId, (err) => {
+      if (err) {
+        console.log("oh no xD");
+      }
+    });
+    res.redirect("/");
+  } else {
+    List.findOneAndUpdate(
+      { name: listName },
+      { $pull: { items: { _id: itemId } } },
+      (err, foundList) => {
+        if (!err) {
+          res.redirect("/" + listName);
+        } else {
+          console.log(err);
+        }
+      }
+    );
+  }
 });
